@@ -17,6 +17,7 @@ if [ -n "$OAUTH" ]; then
     composer config -g github-oauth.github.com $OAUTH
 fi
 
+composer --no-ansi --no-interaction require bbc/programmes-xhprof
 composer --no-ansi --no-interaction install
 
 # Make sure the reports directory exists

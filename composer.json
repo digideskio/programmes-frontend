@@ -12,6 +12,7 @@
         "files": [ "vendor/symfony/symfony/src/Symfony/Component/VarDumper/Resources/functions/dump.php" ]
     },
     "repositories": [
+        { "type": "vcs", "url": "git@github.com:bbc/programmes-xhprof.git" },
         { "type": "vcs", "url": "git@github.com:bbc/branding-client.git" },
         { "type": "vcs", "url": "git@github.com:bbc/gel-iconography-assets.git" },
         { "type": "vcs", "url": "git@github.com:bbc/DoctrineExtensions.git" },
