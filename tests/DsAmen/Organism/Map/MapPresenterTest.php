@@ -35,6 +35,7 @@ class MapPresenterTest extends TestCase
             null,
             null,
             null,
+            false,
             0,
             0
         );
@@ -116,6 +117,7 @@ class MapPresenterTest extends TestCase
             null,
             null,
             null,
+            false,
             0,
             0
         );

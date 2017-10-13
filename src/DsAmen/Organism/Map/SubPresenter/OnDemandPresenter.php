@@ -22,21 +22,35 @@ class OnDemandPresenter extends Presenter
     /** @var string */
     private $class = '1/2@gel1b';
 
-    /** @var CollapsedBroadcast|null */
+    /**
+     * An upcoming episode is an Episode that will be broadcast and streamable in the future
+     * @var bool
+     */
+    private $hasUpcomingEpisode;
+
+    /**
+     * The last on is the CollapsedBroadcast for the last thing that was on.
+     * Its associated episode may or may not be streamable yet
+     * @var CollapsedBroadcast|null
+     */
     private $lastOn;
 
     /** @var ProgrammeContainer */
     private $programmeContainer;
 
-    /** @var Episode|null */
+    /**
+     * An streamable episode is an Episode that is streamable right now
+     * @var Episode|null
+     */
     private $streamableEpisode;
 
-    public function __construct(ProgrammeContainer $programmeContainer, ?Episode $streamableEpisode, ?CollapsedBroadcast $lastOn, $options = [])
+    public function __construct(ProgrammeContainer $programmeContainer, ?Episode $streamableEpisode, bool $hasUpcomingEpisode, ?CollapsedBroadcast $lastOn, $options = [])
     {
         parent::__construct($options);
         $this->lastOn = $lastOn;
         $this->programmeContainer = $programmeContainer;
         $this->streamableEpisode = $streamableEpisode;
+        $this->hasUpcomingEpisode = $hasUpcomingEpisode;
 
         if ($this->getOption('full_width')) {
             $this->class = '1/1';
@@ -66,7 +80,7 @@ class OnDemandPresenter extends Presenter
         return $this->class;
     }
 
-    public function getUpcomingEpisode(): ?Episode
+    public function getPendingEpisode(): ?Episode
     {
         if ($this->lastOn === null) {
             return null;
@@ -81,7 +95,7 @@ class OnDemandPresenter extends Presenter
             throw new Exception('Streamable or LastOn must be set in order to call ' . __FUNCTION__);
         }
 
-        if ($this->lastOnNotAvailableYet()) {
+        if ($this->episodeIsPending()) {
             return 'coming_soon';
         }
 
@@ -119,13 +133,18 @@ class OnDemandPresenter extends Presenter
         return $this->programmeContainer->isRadio() ? 'on_demand' : 'available_on_iplayer_short';
     }
 
+    public function hasUpcomingEpisode(): bool
+    {
+        return $this->hasUpcomingEpisode;
+    }
+
     /**
      * This is when a programme has finished broadcasting, but is not available to stream yet.
      * So instead of showing the old streamable episode, we show the just broadcast episode with a coming soon badge
      *
      * @return bool
      */
-    public function lastOnNotAvailableYet(): bool
+    public function episodeIsPending(): bool
     {
         if (!$this->lastOn || !$this->lastOn->getProgrammeItem()) {
             return false;
@@ -145,7 +164,7 @@ class OnDemandPresenter extends Presenter
             return false;
         }
 
-        $item = $this->lastOnNotAvailableYet() ? $this->lastOn->getProgrammeItem() : $this->streamableEpisode;
+        $item = $this->episodeIsPending() ? $this->lastOn->getProgrammeItem() : $this->streamableEpisode;
 
         if (null === $item) {
             return false;

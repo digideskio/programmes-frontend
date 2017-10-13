@@ -2,14 +2,14 @@
 
 <div class="grid__item map__item {{ on_demand.getClass() }}">
     <div class="map-card-wrap br-box-secondary" data-map-column="on_demand2016">
-        {%- if not on_demand.getStreamableEpisode() and not on_demand.getUpcomingEpisode() -%}
+        {%- if not on_demand.getStreamableEpisode() and not on_demand.getPendingEpisode() and not on_demand.hasUpcomingEpisode() -%}
             {%- if on_demand.getProgramme().isRadio() -%}
                 {{ self.message(on_demand.getTitleTranslationString(), 'programme_availability_none_radio') }}
             {%- else -%}
                 {{ self.message(on_demand.getTitleTranslationString(), 'not_available_iplayer') }}
             {%- endif -%}
-        {%- elseif on_demand.lastOnNotAvailableYet() -%}
-            {{ self.main_column(on_demand.getUpcomingEpisode(), on_demand) }}
+        {%- elseif on_demand.episodeIsPending() -%}
+            {{ self.main_column(on_demand.getPendingEpisode(), on_demand) }}
         {%- elseif on_demand.getStreamableEpisode() -%}
             {{ self.main_column(on_demand.getStreamableEpisode(), on_demand) }}
         {%- else -%}

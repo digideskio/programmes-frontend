@@ -28,6 +28,9 @@ use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
  */
 class MapPresenter extends Presenter
 {
+    /** @var bool */
+    private $hasUpcomingEpisode;
+
     /** @var HelperFactory */
     private $helperFactory;
 
@@ -77,6 +80,7 @@ class MapPresenter extends Presenter
         ?CollapsedBroadcast $lastOn,
         ?Promotion $comingSoonPromo,
         ?Episode $streamableEpisode,
+        bool $hasUpcomingEpisode,
         int $debutsCount,
         int $repeatsCount,
         array $options = []
@@ -90,6 +94,7 @@ class MapPresenter extends Presenter
         $this->upcomingBroadcast = $upcomingBroadcast;
         $this->lastOn = $lastOn;
         $this->streamableEpisode = $streamableEpisode;
+        $this->hasUpcomingEpisode = $hasUpcomingEpisode;
 
         $this->setShowMiniMap();
 
@@ -178,6 +183,7 @@ class MapPresenter extends Presenter
             $this->rightColumns[] = new OnDemandPresenter(
                 $this->programme,
                 $this->streamableEpisode,
+                $this->hasUpcomingEpisode,
                 $this->lastOn,
                 ['full_width' => false, 'show_mini_map' => $this->showMiniMap]
             );
@@ -213,6 +219,7 @@ class MapPresenter extends Presenter
         $this->rightColumns[] = new OnDemandPresenter(
             $this->programme,
             $this->streamableEpisode,
+            $this->hasUpcomingEpisode,
             null,
             [
                 'full_width' => true,
