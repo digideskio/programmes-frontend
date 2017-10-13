@@ -72,6 +72,16 @@ cloud_labs:
     path: /programmes/_cloudlabs/{action}
     defaults: { _controller: App\Controller\CloudLabsController }
 
+# Styleguide Amen
+
+styleguide_amen_intro:
+    path: /programmes/styleguide-amen
+    defaults: { _controller: App\Controller\StyleguideAmenController::introAction }
+
+styleguide_amen:
+    path: /programmes/styleguide-amen/{action}
+    defaults: { _controller: App\Controller\StyleguideAmenController, action: intro }
+
 # Include any 3rd party routes. This should be the last thing in the file
 _3rd_party:
     resource: routing_3rd_party.yml

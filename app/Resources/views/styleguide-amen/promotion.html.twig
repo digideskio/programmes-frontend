@@ -1,0 +1,13 @@
+{% extends 'styleguide-amen/base.html.twig' %}
+
+{% block section_name %}Promotion{% endblock %}
+
+{% block content %}
+    <p>A promotion object is a link to an arbitrary piece of content with some title and a synopsis.</p>
+
+    <h2>A Promotion of a CoreEntity</h2>
+    {{ ds_amen('promotion', promoOfCoreEntity, {}) }}
+
+    <h2>A Promotion of an Image</h2>
+    {{ ds_amen('promotion', promoOfImage, {}) }}
+{% endblock %}

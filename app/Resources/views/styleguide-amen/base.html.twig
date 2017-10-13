@@ -1,0 +1,13 @@
+{% extends'base_ds_amen.html.twig' %}
+
+{% block title %}BBC - Programmes Styleguide{{ block('section_name') is defined ? ' - ' ~ block('section_name') }}{% endblock %}
+
+{% block body %}
+<div class="b-g-p">
+    <h1>Styleguide</h1>
+
+    <h1>{% block section_name %}{% endblock %}</h1>
+
+    {% block content %}{% endblock %}
+</div>
+{% endblock %}
