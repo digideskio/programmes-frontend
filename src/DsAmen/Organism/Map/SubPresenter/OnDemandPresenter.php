@@ -114,6 +114,11 @@ class OnDemandPresenter extends Presenter
         return $this->streamableEpisode;
     }
 
+    public function getTitleTranslationString(): string
+    {
+        return $this->programmeContainer->isRadio() ? 'on_demand' : 'available_on_iplayer_short';
+    }
+
     /**
      * This is when a programme has finished broadcasting, but is not available to stream yet.
      * So instead of showing the old streamable episode, we show the just broadcast episode with a coming soon badge
