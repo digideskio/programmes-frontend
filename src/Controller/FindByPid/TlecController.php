@@ -57,7 +57,7 @@ class TlecController extends BaseController
         if ($programme->getAggregatedEpisodesCount() > 0) {
             $streamableEpisodes = $aggregationService->findStreamableDescendantEpisodes($programme, 1);
             if (empty($streamableEpisodes)) {
-                $hasUpcomingEpisodes = null !== $aggregationService->findUpcomingStreamableDescendantEpisodes($programme, 1); //@TODO maybe change to count
+                $hasUpcomingEpisodes = $aggregationService->countUpcomingStreamableDescendantEpisodes($programme) > 0;
             }
         }
 
