@@ -50,7 +50,8 @@ class FacebookController extends BaseController
                 // Gets the message. entry.messaging is an array, but
                 // will only ever contain one message, so we get index 0
                 $webhookEvent = $entry->messaging[0];
-                if ($webhookEvent->message && $webhookEvent->message->text) {
+                $senderPsid = $webhookEvent->sender->id;
+                if ($webhookEvent->message) {
 //                    $response = ['text' => 'You sent the message: ' . $webhookEvent->message->text . '. Now send me an image!'];
                     $response = [
                             'attachment' => [
@@ -77,6 +78,8 @@ class FacebookController extends BaseController
                             ]
                     ];
                     $this->send($webhookEvent->sender->id, $response);
+                } elseif ($webhookEvent->postback) {
+                    $this->handlePostback($senderPsid, $webhookEvent->postback);
                 }
             }
 
@@ -95,5 +98,9 @@ class FacebookController extends BaseController
         $message = ['recipient' => ['id' => $id], 'message' => $response];
         $client = new Client();
         $client->request('POST', 'https://graph.facebook.com/v2.6/me/messages?access_token=' . self::ACCESS_TOKEN, ['json' => $message]);
+    }
+
+    private function handlePostback(string $senderPsid, string $postback)
+    {
     }
 }
