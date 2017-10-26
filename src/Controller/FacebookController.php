@@ -4,6 +4,7 @@ declare(strict_types = 1);
 namespace App\Controller;
 
 use GuzzleHttp\Client;
+use stdClass;
 use Symfony\Component\HttpFoundation\Request;
 
 class FacebookController extends BaseController
@@ -52,32 +53,7 @@ class FacebookController extends BaseController
                 $webhookEvent = $entry->messaging[0];
                 $senderPsid = $webhookEvent->sender->id;
                 if ($webhookEvent->message) {
-//                    $response = ['text' => 'You sent the message: ' . $webhookEvent->message->text . '. Now send me an image!'];
-                    $response = [
-                            'attachment' => [
-                                'type' => 'template',
-                                'payload' => [
-                                    'template_type' => 'button',
-                                    'text' => 'What would you like to know about?',
-                                    'buttons' => [
-                                        [
-                                            'type' => 'postback',
-                                            'title' => 'Eastenders',
-                                            'payload' => 'b006m86d',
-                                        ],[
-                                            'type' => 'postback',
-                                            'title' => 'Dr Who',
-                                            'payload' => 'b006q2x0',
-                                        ],[
-                                            'type' => 'postback',
-                                            'title' => 'torchwood',
-                                            'payload' => 'b006m8ln',
-                                        ],
-                                    ]
-                                ],
-                            ]
-                    ];
-                    $this->send($webhookEvent->sender->id, $response);
+                    $this->handleMessage($senderPsid, $webhookEvent->message);
                 } elseif ($webhookEvent->postback) {
                     $this->handlePostback($senderPsid, $webhookEvent->postback);
                 }
@@ -97,7 +73,47 @@ class FacebookController extends BaseController
     {
         $message = ['recipient' => ['id' => $id], 'message' => $response];
         $client = new Client();
-        $client->request('POST', 'https://graph.facebook.com/v2.6/me/messages?access_token=' . self::ACCESS_TOKEN, ['json' => $message]);
+        $client->request(
+            'POST',
+            'https://graph.facebook.com/v2.6/me/messages?access_token=' . self::ACCESS_TOKEN,
+            [
+                'json' => $message,
+            ]
+        );
+    }
+
+
+    private function handleMessage(string $senderPsid, stdClass $message)
+    {
+        if ($message->text === 'Hey') {
+            $response = ['text' => 'Hey. Would you like to know when something is next on?'];
+        } else {
+            $response = [
+                'attachment' => [
+                    'type' => 'template',
+                    'payload' => [
+                        'template_type' => 'button',
+                        'text' => 'Which programme would you like to know the next on time for?',
+                        'buttons' => [
+                            [
+                                'type' => 'postback',
+                                'title' => 'Eastenders',
+                                'payload' => 'b006m86d',
+                            ],[
+                                'type' => 'postback',
+                                'title' => 'Dr Who',
+                                'payload' => 'b006q2x0',
+                            ],[
+                                'type' => 'postback',
+                                'title' => 'torchwood',
+                                'payload' => 'b006m8ln',
+                            ],
+                        ]
+                    ],
+                ]
+            ];
+        }
+        $this->send($senderPsid, $response);
     }
 
     private function handlePostback(string $senderPsid, string $postback)
