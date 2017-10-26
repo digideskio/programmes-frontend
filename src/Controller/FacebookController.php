@@ -3,6 +3,7 @@ declare(strict_types = 1);
 
 namespace App\Controller;
 
+use BBC\ProgrammesPagesService\Domain\Entity\Brand;
 use BBC\ProgrammesPagesService\Domain\Entity\Programme;
 use GuzzleHttp\Client;
 use stdClass;
@@ -113,9 +114,11 @@ class FacebookController extends BaseController
                 $responseButtons = [];
 
                 foreach ($results as $result) {
-                    $pid = $result->getPid();
-                    $title = $result->getTitle();
-                    array_push($responseButtons, ['type' => 'postback', 'title' => $title, 'payload' => $pid]);
+                    if ($result instanceof Brand) {
+                        $pid = $result->getPid();
+                        $title = $result->getTitle();
+                        $responseButtons[] = ['type' => 'postback', 'title' => $title, 'payload' => $pid];
+                    }
                 }
 
                 $response = [
