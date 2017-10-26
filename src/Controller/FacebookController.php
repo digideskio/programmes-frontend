@@ -116,7 +116,36 @@ class FacebookController extends BaseController
         $this->send($senderPsid, $response);
     }
 
-    private function handlePostback(string $senderPsid, string $postback)
+    private function handlePostback(string $senderPsid, stdClass $postback)
     {
+        $payload = $postback->payload;
+
+        // if we're given a pid, find out what they would like to know
+        if ($this->isPid($payload)) {
+
+             if ($payload === 'b006m86d') {
+                 $response = ['text' => 'Eastenders is next on this evening at 6pm on BBC One'];
+             } elseif ($payload === 'b006m86d') {
+                 $response = ['text' => 'Dr Who is next beroadcast on Christmas Day'];
+             } elseif ($payload === 'b006m8ln') {
+                 $response = ['text' => 'There are no scheduled broadcasts of Torchwood'];
+             } else {
+                 $response = ['text' => 'Sorry, I didnt catch that'];
+             }
+
+
+            $this->send($senderPsid, $response);
+            $this->send($senderPsid, ['text' => 'Anything else?']);
+        } else {
+            $response = ['text' => 'Sorry, I didnt catch that'];
+            $this->send($senderPsid, $response);
+        }
+
+
+    }
+
+    private function isPid($response)
+    {
+        return preg_match('/^[0-9b-df-hj-np-tv-z]{8,15}$/', $response);
     }
 }
