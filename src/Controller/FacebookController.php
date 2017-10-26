@@ -52,10 +52,12 @@ class FacebookController extends BaseController
                 // will only ever contain one message, so we get index 0
                 $webhookEvent = $entry->messaging[0];
                 $senderPsid = $webhookEvent->sender->id;
-                if ($webhookEvent->message) {
+                if (isset($webhookEvent->message) && $webhookEvent->message) {
                     $this->handleMessage($senderPsid, $webhookEvent->message);
-                } elseif ($webhookEvent->postback) {
+                } elseif (isset($webhookEvent->postback) && $webhookEvent->postback) {
                     $this->handlePostback($senderPsid, $webhookEvent->postback);
+                } else {
+                    $this->send($senderPsid, ['text' => 'Neither']);
                 }
             }
 
@@ -114,9 +116,10 @@ class FacebookController extends BaseController
             ];
         }
         $this->send($senderPsid, $response);
+        $this->send($senderPsid, ['text' => 'Second message']);
     }
 
-    private function handlePostback(string $senderPsid, stdClass $postback)
+    private function handlePostback(string $senderPsid, $postback)
     {
         $payload = $postback->payload;
 
@@ -125,8 +128,8 @@ class FacebookController extends BaseController
 
              if ($payload === 'b006m86d') {
                  $response = ['text' => 'Eastenders is next on this evening at 6pm on BBC One'];
-             } elseif ($payload === 'b006m86d') {
-                 $response = ['text' => 'Dr Who is next beroadcast on Christmas Day'];
+             } elseif ($payload === 'b006q2x0') {
+                 $response = ['text' => 'Dr Who is next broadcast on Christmas Day'];
              } elseif ($payload === 'b006m8ln') {
                  $response = ['text' => 'There are no scheduled broadcasts of Torchwood'];
              } else {
@@ -140,8 +143,6 @@ class FacebookController extends BaseController
             $response = ['text' => 'Sorry, I didnt catch that'];
             $this->send($senderPsid, $response);
         }
-
-
     }
 
     private function isPid($response)
