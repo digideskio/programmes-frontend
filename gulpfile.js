@@ -101,7 +101,7 @@ gulp.task('rev', ['sass', 'images', 'js'], function() {
         .pipe(override())
         .pipe(gulp.dest(staticPathDist))
         .pipe(revdelOriginal()) // delete no-revised file
-        .pipe(rev.manifest('rev-manifest.json'))
+        .pipe(rev.manifest('../../rev-manifest.json'))
         .pipe(gulp.dest(staticPathDist));
 });
 
