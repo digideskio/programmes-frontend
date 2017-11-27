@@ -1,7 +1,7 @@
 <?php
 declare(strict_types = 1);
 
-namespace Tests\App\Controller\Styleguide\Amen;
+namespace Tests\App\Controller\Styleguide\Amen\Organism;
 
 use GuzzleHttp\Client;
 use Tests\App\BaseWebTestCase;
