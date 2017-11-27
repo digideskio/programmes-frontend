@@ -1,6 +1,6 @@
 <?php
 declare(strict_types = 1);
-namespace App\Controller\Styleguide\Amen;
+namespace App\Controller\Styleguide\Amen\Organism;
 
 use App\Builders\EpisodeBuilder;
 use App\Builders\ImageBuilder;
