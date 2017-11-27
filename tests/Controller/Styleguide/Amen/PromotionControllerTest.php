@@ -18,7 +18,7 @@ class PromotionControllerTest extends BaseWebTestCase
 
     public function testPromotionAmenRouteIsFound()
     {
-        $this->httpClient->request('GET', '/programmes/styleguide/amen/promotion');
+        $this->httpClient->request('GET', '/programmes/styleguide/amen/organism/promotion');
 
         $this->assertEquals(200, $this->httpClient->getResponse()->getStatusCode());
     }
