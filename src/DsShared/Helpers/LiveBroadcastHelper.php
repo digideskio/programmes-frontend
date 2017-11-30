@@ -63,7 +63,6 @@ class LiveBroadcastHelper
         'bbc_radio_foyle'                       => ['network', ['networkUrlKey' => 'radiofoyle']],
         'bbc_radio_wales_fm'                    => ['network', ['networkUrlKey' => 'radiowales']],
         'bbc_radio_cymru'                       => ['network', ['networkUrlKey' => 'radiocymru']],
-        'bbc_radio_cymru_2'                     => ['network', ['networkUrlKey' => 'radiocymru2']],
         'bbc_radio_cymru_mwy'                   => ['network', ['networkUrlKey' => 'radiocymrumwy']],
         'bbc_london'                            => ['network', ['networkUrlKey' => 'radiolondon']],
         'bbc_radio_berkshire'                   => ['network', ['networkUrlKey' => 'radioberkshire']],
@@ -137,6 +136,7 @@ class LiveBroadcastHelper
 
         'bbc_indonesian_radio'                  => ['worldservice_liveradio', ['language' => 'indonesia', 'sid' => 'bbc_indonesian_radio']],
 
+        'bbc_radio_cymru_2'                     => ['popup_player', ['sid' => 'bbc_radio_cymru_2']],
         'bbc_radio_solent_west_dorset'          => ['popup_player', ['sid' => 'bbc_radio_solent_west_dorset']],
         'bbc_radio_scotland_mw'                 => ['network', ['networkUrlKey' => 'radioscotland']],
         'bbc_world_service_americas'            => ['network', ['networkUrlKey' => 'worldserviceradio']],
