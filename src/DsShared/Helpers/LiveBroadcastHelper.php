@@ -63,6 +63,7 @@ class LiveBroadcastHelper
         'bbc_radio_foyle'                       => ['network', ['networkUrlKey' => 'radiofoyle']],
         'bbc_radio_wales_fm'                    => ['network', ['networkUrlKey' => 'radiowales']],
         'bbc_radio_cymru'                       => ['network', ['networkUrlKey' => 'radiocymru']],
+        'bbc_radio_cymru_2'                     => ['network', ['networkUrlKey' => 'radiocymru2']],
         'bbc_radio_cymru_mwy'                   => ['network', ['networkUrlKey' => 'radiocymrumwy']],
         'bbc_london'                            => ['network', ['networkUrlKey' => 'radiolondon']],
         'bbc_radio_berkshire'                   => ['network', ['networkUrlKey' => 'radioberkshire']],
