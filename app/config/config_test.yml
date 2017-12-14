@@ -9,6 +9,7 @@ parameters:
     app.receng.service.class: App\ExternalApi\RecEng\Service\RecEngStubService
     app.electron.service.class: App\ExternalApi\Electron\Service\ElectronStubService
     app.recipe.service.class: App\ExternalApi\Recipes\Service\RecipesStubService
+    app.ada.class_service.class: App\ExternalApi\Ada\Service\AdaClassStubService
 
 framework:
     router:
