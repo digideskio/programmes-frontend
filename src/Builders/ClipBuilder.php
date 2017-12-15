@@ -2,25 +2,19 @@
 declare(strict_types = 1);
 namespace App\Builders;
 
-use BBC\ProgrammesPagesService\Domain\Entity\Episode;
+use BBC\ProgrammesPagesService\Domain\Entity\Clip;
 use BBC\ProgrammesPagesService\Domain\Entity\Options;
 use BBC\ProgrammesPagesService\Domain\ValueObject\Pid;
 use BBC\ProgrammesPagesService\Domain\ValueObject\Synopses;
 
-class EpisodeBuilder extends AbstractProgrammeItemBuilder implements BuilderInterface
+class ClipBuilder extends AbstractProgrammeItemBuilder implements BuilderInterface
 {
-    /** @var int */
-    private $aggregatedBroadcastsCount;
-
-    /** @var int */
-    private $availableClipsCount;
-
     private function __construct()
     {
         $this->dbAncestryIds = [1212];
         $this->pid = new Pid('d00744wz');
-        $this->title = 'my episode title';
-        $this->searchTitle = 'my search episode title';
+        $this->title = 'my clip title';
+        $this->searchTitle = 'my search clip title';
         $this->synopses = new Synopses('My short synopsis', 'my a very medium no too much synopsis', 'my extremely boring and endless text for my long synopsis');
         $this->image = ImageBuilder::default()->build();
         $this->promotionsCount = 10;
@@ -29,25 +23,11 @@ class EpisodeBuilder extends AbstractProgrammeItemBuilder implements BuilderInte
         $this->isStreamable = true;
         $this->isStreamableAlternate = true;
         $this->contributionsCount = 2;
-        $this->mediaType = 'audio';
+        $this->mediaType = 'audio_video';
         $this->segmentEventCount = 19;
         $this->aggregatedGalleriesCount = 2;
         $this->options = new Options();
-        $this->aggregatedBroadcastsCount = 10;
-        $this->availableClipsCount = 14;
         $this->duration = 6400;
-    }
-
-    public function withAggregatedBroadcastsCount(int $aggregatedBroadcastsCount)
-    {
-        $this->aggregatedBroadcastsCount = $aggregatedBroadcastsCount;
-        return $this;
-    }
-
-    public function withAvailableClipsCount(int $availableClipsCount)
-    {
-        $this->availableClipsCount = $availableClipsCount;
-        return $this;
     }
 
     public static function default()
@@ -55,9 +35,9 @@ class EpisodeBuilder extends AbstractProgrammeItemBuilder implements BuilderInte
         return new self();
     }
 
-    public function build(): Episode
+    public function build()
     {
-        return new Episode(
+        return new CLip(
             $this->dbAncestryIds,
             $this->pid,
             $this->title,
@@ -72,8 +52,6 @@ class EpisodeBuilder extends AbstractProgrammeItemBuilder implements BuilderInte
             $this->contributionsCount,
             $this->mediaType,
             $this->segmentEventCount,
-            $this->aggregatedBroadcastsCount,
-            $this->availableClipsCount,
             $this->aggregatedGalleriesCount,
             $this->options,
             // optionals
