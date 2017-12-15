@@ -31,7 +31,6 @@ Abstract class AbstractProgrammeContainerBuilder extends AbstractProgrammeBuilde
         $this->availableClipsCount = 3;
         $this->availableEpisodesCount = 2;
         $this->isPodcastable = true;
-        $this->expectedChildCount = 2;
     }
 
     public function withAggregatedBroadcastsCount(int $aggregatedBroadcastsCount)
