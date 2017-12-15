@@ -28,6 +28,13 @@ Abstract class AbstractProgrammeItemBuilder extends AbstractProgrammeBuilder
     /** @var DateTimeImmutable|null */
     protected $streamableUntil;
 
+    protected function __construct()
+    {
+        parent::__construct();
+        $this->mediaType = 'audio_video';
+        $this->segmentEventCount = 19;
+    }
+
     /**
      * @see \BBC\ProgrammesPagesService\Domain\Enumeration\MediaTypeEnum
      */

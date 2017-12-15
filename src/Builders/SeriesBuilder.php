@@ -2,35 +2,16 @@
 
 namespace App\Builders;
 
-use BBC\ProgrammesPagesService\Domain\Entity\Options;
 use BBC\ProgrammesPagesService\Domain\Entity\Series;
-use BBC\ProgrammesPagesService\Domain\ValueObject\Pid;
-use BBC\ProgrammesPagesService\Domain\ValueObject\Synopses;
 
 class SeriesBuilder extends AbstractProgrammeContainerBuilder implements BuilderInterface
 {
-    private function __construct()
+    protected function __construct()
     {
-        $this->aggregatedBroadcastsCount =2;
-        $this->aggregatedEpisodesCount = 4;
-        $this->availableClipsCount = 3;
-        $this->availableEpisodesCount = 2;
-        $this->isPodcastable = true;
-        $this->expectedChildCount = 2;
-        $this->dbAncestryIds = [1212];
-        $this->pid = new Pid('d00744wz');
+        parent::__construct();
+
         $this->title = 'My series title';
         $this->searchTitle = 'My search title';
-        $this->synopses = new Synopses('My short synopsis', 'my a very medium no too much synopsis', 'my extremely boring and endless text for my long synopsis');
-        $this->image = ImageBuilder::default()->build();
-        $this->promotionsCount = 10;
-        $this->relatedLinksCount = 5;
-        $this->hasSupportingContent = false;
-        $this->isStreamable = true;
-        $this->isStreamableAlternate = true;
-        $this->contributionsCount = 2;
-        $this->aggregatedGalleriesCount = 3;
-        $this->options = new Options();
     }
 
     /**

@@ -3,9 +3,6 @@ declare(strict_types = 1);
 namespace App\Builders;
 
 use BBC\ProgrammesPagesService\Domain\Entity\Episode;
-use BBC\ProgrammesPagesService\Domain\Entity\Options;
-use BBC\ProgrammesPagesService\Domain\ValueObject\Pid;
-use BBC\ProgrammesPagesService\Domain\ValueObject\Synopses;
 
 class EpisodeBuilder extends AbstractProgrammeItemBuilder implements BuilderInterface
 {
@@ -15,26 +12,14 @@ class EpisodeBuilder extends AbstractProgrammeItemBuilder implements BuilderInte
     /** @var int */
     private $availableClipsCount;
 
-    private function __construct()
+    protected function __construct()
     {
-        $this->dbAncestryIds = [1212];
-        $this->pid = new Pid('d00744wz');
+        parent::__construct();
+
         $this->title = 'my episode title';
         $this->searchTitle = 'my search episode title';
-        $this->synopses = new Synopses('My short synopsis', 'my a very medium no too much synopsis', 'my extremely boring and endless text for my long synopsis');
-        $this->image = ImageBuilder::default()->build();
-        $this->promotionsCount = 10;
-        $this->relatedLinksCount = 5;
-        $this->hasSupportingContent = false;
-        $this->isStreamable = true;
-        $this->isStreamableAlternate = true;
-        $this->contributionsCount = 2;
-        $this->mediaType = 'audio';
-        $this->segmentEventCount = 19;
-        $this->aggregatedGalleriesCount = 2;
-        $this->options = new Options();
         $this->aggregatedBroadcastsCount = 10;
-        $this->availableClipsCount = 14;
+        $this->availableClipsCount = 10;
         $this->duration = 6400;
     }
 
