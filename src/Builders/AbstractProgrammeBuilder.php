@@ -73,6 +73,24 @@ Abstract class AbstractProgrammeBuilder
     /** @var MasterBrand|null */
     protected $masterBrand;
 
+    protected function __construct()
+    {
+        $this->dbAncestryIds = [1212];
+        $this->pid = new Pid('d00744wz');
+        $this->title = 'my programme title';
+        $this->searchTitle = 'my programme title';
+        $this->synopses = new Synopses('My short synopsis', 'my a very medium no too much synopsis', 'my extremely boring and endless text for my long synopsis');
+        $this->image = ImageBuilder::default()->build();
+        $this->promotionsCount = 10;
+        $this->relatedLinksCount = 5;
+        $this->hasSupportingContent = false;
+        $this->isStreamable = true;
+        $this->isStreamableAlternate = true;
+        $this->contributionsCount = 2;
+        $this->aggregatedGalleriesCount = 2;
+        $this->options = new Options();
+    }
+
     public function witHasSupportingContent(bool $hasSupportingContent)
     {
         $this->hasSupportingContent = $hasSupportingContent;

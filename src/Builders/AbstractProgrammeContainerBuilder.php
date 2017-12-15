@@ -23,6 +23,17 @@ Abstract class AbstractProgrammeContainerBuilder extends AbstractProgrammeBuilde
     /** @var int|null */
     protected $expectedChildCount;
 
+    protected function __construct()
+    {
+        parent::__construct();
+        $this->aggregatedBroadcastsCount = 2;
+        $this->aggregatedEpisodesCount = 4;
+        $this->availableClipsCount = 3;
+        $this->availableEpisodesCount = 2;
+        $this->isPodcastable = true;
+        $this->expectedChildCount = 2;
+    }
+
     public function withAggregatedBroadcastsCount(int $aggregatedBroadcastsCount)
     {
         $this->aggregatedBroadcastsCount = $aggregatedBroadcastsCount;
