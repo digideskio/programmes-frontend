@@ -2,6 +2,13 @@
 
 namespace App\Builders;
 
+/**
+ * sequence use-case examples:
+ *
+ * $clip = ClipBuilder::default()->withDuration(3400)->build()
+ * $clip = ClipBuilder::WithManyGenres()->withMasterbrand($masterbrand)->build()
+ */
+
 interface BuilderInterface
 {
     /**

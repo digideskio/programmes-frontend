@@ -5,7 +5,7 @@ namespace App\Builders;
 use BBC\ProgrammesPagesService\Domain\ValueObject\PartialDate;
 use DateTimeImmutable;
 
-Abstract class AbstractProgrammeItemBuilder extends AbstractProgrammeBuilder
+abstract class AbstractProgrammeItemBuilder extends AbstractProgrammeBuilder
 {
     /**
      * @see \BBC\ProgrammesPagesService\Domain\Enumeration\MediaTypeEnum
@@ -33,6 +33,7 @@ Abstract class AbstractProgrammeItemBuilder extends AbstractProgrammeBuilder
         parent::__construct();
         $this->mediaType = 'audio_video';
         $this->segmentEventCount = 19;
+        $this->duration = 6400;
     }
 
     /**

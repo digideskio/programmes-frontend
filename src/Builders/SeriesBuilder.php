@@ -4,23 +4,19 @@ namespace App\Builders;
 
 use BBC\ProgrammesPagesService\Domain\Entity\Series;
 
-class SeriesBuilder extends AbstractProgrammeContainerBuilder implements BuilderInterface
+class SeriesBuilder extends AbstractProgrammeContainerBuilder
 {
-    protected function __construct()
-    {
-        parent::__construct();
-
-        $this->title = 'My series title';
-        $this->searchTitle = 'My search title';
-    }
-
     /**
      * Create a builder with default state.
      * This default state reduce the amount of steps necessary when trying to get a final entity in an specified state
      */
     public static function default()
     {
-        return new self();
+        $self = new self();
+        $self->withTitle('My series title')
+            ->withSearchTitle('My search title');
+
+        return $self;
     }
 
     /**

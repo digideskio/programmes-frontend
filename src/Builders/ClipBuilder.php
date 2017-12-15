@@ -4,25 +4,20 @@ namespace App\Builders;
 
 use BBC\ProgrammesPagesService\Domain\Entity\Clip;
 
-class ClipBuilder extends AbstractProgrammeItemBuilder implements BuilderInterface
+class ClipBuilder extends AbstractProgrammeItemBuilder
 {
-    protected function __construct()
-    {
-        parent::__construct();
-
-        $this->title = 'my clip title';
-        $this->searchTitle = 'my search clip title';
-        $this->duration = 6400;
-    }
-
     public static function default()
     {
-        return new self();
+        $self = new self();
+        $self->withTitle('my clip title')
+            ->withSearchTitle('my search clip title');
+
+        return $self;
     }
 
     public function build()
     {
-        return new CLip(
+        return new Clip(
             $this->dbAncestryIds,
             $this->pid,
             $this->title,

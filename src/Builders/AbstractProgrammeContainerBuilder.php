@@ -3,7 +3,7 @@
 declare(strict_types = 1);
 namespace App\Builders;
 
-Abstract class AbstractProgrammeContainerBuilder extends AbstractProgrammeBuilder
+abstract class AbstractProgrammeContainerBuilder extends AbstractProgrammeBuilder
 {
     /** @var int */
     protected $aggregatedBroadcastsCount;
@@ -31,7 +31,6 @@ Abstract class AbstractProgrammeContainerBuilder extends AbstractProgrammeBuilde
         $this->availableClipsCount = 3;
         $this->availableEpisodesCount = 2;
         $this->isPodcastable = true;
-        $this->expectedChildCount = 2;
     }
 
     public function withAggregatedBroadcastsCount(int $aggregatedBroadcastsCount)

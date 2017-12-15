@@ -4,24 +4,13 @@ namespace App\Builders;
 
 use BBC\ProgrammesPagesService\Domain\Entity\Episode;
 
-class EpisodeBuilder extends AbstractProgrammeItemBuilder implements BuilderInterface
+class EpisodeBuilder extends AbstractProgrammeItemBuilder
 {
     /** @var int */
     private $aggregatedBroadcastsCount;
 
     /** @var int */
     private $availableClipsCount;
-
-    protected function __construct()
-    {
-        parent::__construct();
-
-        $this->title = 'my episode title';
-        $this->searchTitle = 'my search episode title';
-        $this->aggregatedBroadcastsCount = 10;
-        $this->availableClipsCount = 10;
-        $this->duration = 6400;
-    }
 
     public function withAggregatedBroadcastsCount(int $aggregatedBroadcastsCount)
     {
@@ -37,7 +26,13 @@ class EpisodeBuilder extends AbstractProgrammeItemBuilder implements BuilderInte
 
     public static function default()
     {
-        return new self();
+        $self = new self();
+        $self->withTitle('my episode title')
+            ->withSearchTitle('my search episode title')
+            ->withAggregatedBroadcastsCount(10)
+            ->withAvailableClipsCount(10);
+
+        return $self;
     }
 
     public function build(): Episode
