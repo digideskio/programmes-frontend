@@ -5,7 +5,7 @@ namespace App\Builders;
 use BBC\ProgrammesPagesService\Domain\Entity\Format;
 use BBC\ProgrammesPagesService\Domain\Entity\Genre;
 
-Abstract class AbstractProgrammeBuilder extends AbstractCoreEntityBuilder
+abstract class AbstractProgrammeBuilder extends AbstractCoreEntityBuilder
 {
     /** @var bool */
     protected $hasSupportingContent;

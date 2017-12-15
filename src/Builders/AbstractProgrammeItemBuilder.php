@@ -5,7 +5,7 @@ namespace App\Builders;
 use BBC\ProgrammesPagesService\Domain\ValueObject\PartialDate;
 use DateTimeImmutable;
 
-Abstract class AbstractProgrammeItemBuilder extends AbstractProgrammeBuilder
+abstract class AbstractProgrammeItemBuilder extends AbstractProgrammeBuilder
 {
     /**
      * @see \BBC\ProgrammesPagesService\Domain\Enumeration\MediaTypeEnum

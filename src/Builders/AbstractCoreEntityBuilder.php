@@ -9,7 +9,7 @@ use BBC\ProgrammesPagesService\Domain\Entity\Programme;
 use BBC\ProgrammesPagesService\Domain\ValueObject\Pid;
 use BBC\ProgrammesPagesService\Domain\ValueObject\Synopses;
 
-Abstract class AbstractCoreEntityBuilder
+abstract class AbstractCoreEntityBuilder
 {
     /** @var Programme|null */
     protected $parent;

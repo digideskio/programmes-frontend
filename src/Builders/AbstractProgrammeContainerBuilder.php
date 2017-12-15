@@ -3,7 +3,7 @@
 declare(strict_types = 1);
 namespace App\Builders;
 
-Abstract class AbstractProgrammeContainerBuilder extends AbstractProgrammeBuilder
+abstract class AbstractProgrammeContainerBuilder extends AbstractProgrammeBuilder
 {
     /** @var int */
     protected $aggregatedBroadcastsCount;
