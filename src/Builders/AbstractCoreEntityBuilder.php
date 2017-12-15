@@ -11,14 +11,14 @@ use BBC\ProgrammesPagesService\Domain\ValueObject\Synopses;
 
 Abstract class AbstractCoreEntityBuilder
 {
-    /** @var int */
-    protected $aggregatedGalleriesCount;
-
-    /** @var int[] */
-    protected $dbAncestryIds;
+    /** @var Programme|null */
+    protected $parent;
 
     /** @var Pid */
     protected $pid;
+
+    /** @var int[] */
+    protected $dbAncestryIds;
 
     /** @var string */
     protected $title;
@@ -44,9 +44,6 @@ Abstract class AbstractCoreEntityBuilder
     /** @var Options */
     protected $options;
 
-    /** @var Programme|null */
-    protected $parent;
-
     /** @var MasterBrand|null */
     protected $masterBrand;
 
@@ -61,17 +58,9 @@ Abstract class AbstractCoreEntityBuilder
         $this->promotionsCount = 10;
         $this->relatedLinksCount = 5;
         $this->contributionsCount = 2;
-        $this->aggregatedGalleriesCount = 2;
         $this->options = new Options();
     }
 
-    public function withAggregatedGalleriesCount(int $aggregatedGalleriesCount)
-    {
-        $this->aggregatedGalleriesCount = $aggregatedGalleriesCount;
-        return $this;
-    }
-
-    // FROM CORE_ENTITY
     public function withDbAncestryIds(array $dbAncestries)
     {
         $this->dbAncestryIds = $dbAncestries;

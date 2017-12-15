@@ -28,12 +28,16 @@ Abstract class AbstractProgrammeBuilder extends AbstractCoreEntityBuilder
     /** @var DateTimeImmutable|null */
     protected $firstBroadcastDate;
 
+    /** @var int */
+    protected $aggregatedGalleriesCount;
+
     protected function __construct()
     {
         parent::__construct();
 
         $this->hasSupportingContent = false;
         $this->isStreamable = true;
+        $this->aggregatedGalleriesCount = 3;
         $this->isStreamableAlternate = true;
     }
 
@@ -79,5 +83,9 @@ Abstract class AbstractProgrammeBuilder extends AbstractCoreEntityBuilder
         return $this;
     }
 
-
+    public function withAggregatedGalleriesCount(int $aggregatedGalleriesCount)
+    {
+        $this->aggregatedGalleriesCount = $aggregatedGalleriesCount;
+        return $this;
+    }
 }
