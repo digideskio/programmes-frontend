@@ -12,7 +12,6 @@ class ClipBuilder extends AbstractProgrammeItemBuilder implements BuilderInterfa
 
         $this->title = 'my clip title';
         $this->searchTitle = 'my search clip title';
-        $this->duration = 6400;
     }
 
     public static function default()

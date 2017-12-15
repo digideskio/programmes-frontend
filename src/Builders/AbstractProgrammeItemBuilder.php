@@ -33,6 +33,7 @@ Abstract class AbstractProgrammeItemBuilder extends AbstractProgrammeBuilder
         parent::__construct();
         $this->mediaType = 'audio_video';
         $this->segmentEventCount = 19;
+        $this->duration = 6400;
     }
 
     /**

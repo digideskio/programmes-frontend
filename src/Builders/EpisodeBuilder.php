@@ -20,7 +20,6 @@ class EpisodeBuilder extends AbstractProgrammeItemBuilder implements BuilderInte
         $this->searchTitle = 'my search episode title';
         $this->aggregatedBroadcastsCount = 10;
         $this->availableClipsCount = 10;
-        $this->duration = 6400;
     }
 
     public function withAggregatedBroadcastsCount(int $aggregatedBroadcastsCount)
