@@ -9,9 +9,6 @@ class SeriesBuilder extends AbstractProgrammeContainerBuilder
     protected function __construct()
     {
         parent::__construct();
-
-        $this->title = 'My series title';
-        $this->searchTitle = 'My search title';
     }
 
     /**
@@ -20,7 +17,11 @@ class SeriesBuilder extends AbstractProgrammeContainerBuilder
      */
     public static function default()
     {
-        return new self();
+        $self = new self();
+        $self->withTitle('My series title')
+            ->withSearchTitle('My search title');
+
+        return $self;
     }
 
     /**

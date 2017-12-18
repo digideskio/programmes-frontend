@@ -6,6 +6,19 @@ use BBC\ProgrammesPagesService\Domain\Entity\Brand;
 
 class BrandBuilder extends AbstractProgrammeContainerBuilder
 {
+    protected function __construct()
+    {
+        parent::__construct();
+    }
+
+    public static function default()
+    {
+        $self = new self();
+        $self->withTitle('This is a brand');
+
+        return $self;
+    }
+
     /**
      * Given that we have the desired state, then create the real entity we want
      */
