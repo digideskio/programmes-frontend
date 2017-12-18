@@ -6,11 +6,6 @@ use BBC\ProgrammesPagesService\Domain\Entity\Clip;
 
 class ClipBuilder extends AbstractProgrammeItemBuilder
 {
-    protected function __construct($title, $searchTitle)
-    {
-        parent::__construct();
-    }
-
     public static function default()
     {
         $self = new self();

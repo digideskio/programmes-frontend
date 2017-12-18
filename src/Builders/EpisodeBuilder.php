@@ -12,11 +12,6 @@ class EpisodeBuilder extends AbstractProgrammeItemBuilder
     /** @var int */
     private $availableClipsCount;
 
-    protected function __construct()
-    {
-        parent::__construct();
-    }
-
     public function withAggregatedBroadcastsCount(int $aggregatedBroadcastsCount)
     {
         $this->aggregatedBroadcastsCount = $aggregatedBroadcastsCount;

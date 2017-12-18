@@ -6,11 +6,6 @@ use BBC\ProgrammesPagesService\Domain\Entity\Brand;
 
 class BrandBuilder extends AbstractProgrammeContainerBuilder
 {
-    protected function __construct()
-    {
-        parent::__construct();
-    }
-
     public static function default()
     {
         $self = new self();
