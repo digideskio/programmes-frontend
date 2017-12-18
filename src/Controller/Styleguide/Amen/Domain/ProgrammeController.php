@@ -15,6 +15,7 @@ class ProgrammeController extends BaseController
         return $this->renderWithChrome('styleguide/amen/domain/programme.html.twig', [
             'itemsOfDifferentTypes' => $this->buildProgrammesItemsOfDifferentTypes(),
             'itemsWithDifferentDisplayOptions' => $this->buildItemsWithDifferentDisplays(),
+            'itemsWithDifferentHtmlStructure' => $this->buildItemsWithDifferentHtmlStructure(),
 
         ]);
     }
@@ -36,11 +37,11 @@ class ProgrammeController extends BaseController
                 'render_options' => [],
             ],
             // programme containers
-            'Programme item is Brand' => [
+            'Programme container is Brand' => [
                 'item' => BrandBuilder::default()->build(),
                 'render_options' => [],
             ],
-            'Programme item is Series' => [
+            'Programme container is Series' => [
                 'item' => SeriesBuilder::default()->build(),
                 'render_options' => [],
             ],
@@ -56,7 +57,7 @@ class ProgrammeController extends BaseController
     private function buildItemsWithDifferentDisplays()
     {
         return [
-            'GENERAL' => [
+            'TYPE VARIATION' => [
                 'item' => EpisodeBuilder::default()->build(),
                 'render_options' => [
                     'show_image' => false,
@@ -108,6 +109,11 @@ class ProgrammeController extends BaseController
                 ],
             ],
         ];
+    }
+
+    public function buildItemsWithDifferentHtmlStructure()
+    {
+
     }
 
     // private function buildItemsWithDifferentLayout()

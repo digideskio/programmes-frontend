@@ -4,20 +4,16 @@
 {% block section_name %}Programme - Items{% endblock %}
 
 {% block content %}
-        <h2>Use cases: </h2>
-        <div class="grid">
-            {{ self.displayListOfRenderDescriptors(itemsOfDifferentTypes) }}
-        </div>
-        <hr>
-        <h2>Display variations: </h2>
-        <div class="grid">
-            {{ self.displayListOfRenderDescriptors(itemsWithDifferentDisplayOptions) }}
-        </div>
-        <hr>
-        {#<h2>Html variations: </h2>#}
-        {#<div class="grid">#}
-            {#{{ self.displayListOfRenderDescriptors(itemsOfDifferentTypes) }}#}
-        {#</div>#}
+
+        <h2 class="text--shout text--center centi">Programme types variations: </h2>
+        {{ self.displayListOfRenderDescriptors(itemsOfDifferentTypes) }}
+
+        <h2 class="text--shout text--center centi">UI Display variations: </h2>
+        {{ self.displayListOfRenderDescriptors(itemsWithDifferentDisplayOptions) }}
+
+        <h2 class="text--shout text--center centi">Html structure variations: </h2>
+        {{ self.displayListOfRenderDescriptors(itemsWithDifferentHtmlStructure) }}
+
 {% endblock %}
 
 
@@ -41,17 +37,24 @@
     {% import _self as self %}
 
     {% for description, presenterArgs in listOfRenderDescriptorsDto %}
-        <ul class="grid__item 1/2">
-            <li><b>Description:</b> {{description}}</li>
+        <div class="grid">
+            <div class="grid__item 1/3 grid__item--column">
+                <div>
+                    <b>Description:</b> {{description}}
+                </div>
+                <div>
+                    {{ds_amen('programme', presenterArgs['item'], presenterArgs['render_options'])}}
+                </div>
+                <div>
+                    {% if presenterArgs['render_options'] | length > 0 %}
+                        <b>Render options:</b>
+                        {{self.renderOptionsToString(presenterArgs['render_options'])}}
+                    {% else %}
+                        <b>Render options:</b> Defaults
+                    {% endif %}
+                </div>
+            </div>
+        </div>
 
-            {% if presenterArgs['render_options'] | length > 0 %}
-                <b>Render options:</b>
-            {% endif %}
-
-            <li>{{self.renderOptionsToString(presenterArgs['render_options'])}}</li>
-
-            {#Render item#}
-            <li>{{ds_amen('programme', presenterArgs['item'], presenterArgs['render_options'])}}</li>
-        </ul>
     {% endfor %}
 {% endmacro %}
