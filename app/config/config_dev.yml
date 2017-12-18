@@ -4,6 +4,22 @@ imports:
 parameters:
     app.metric_backend.class: App\Metrics\Backend\LogMetricBackend
 
+doctrine:
+    orm:
+        metadata_cache_driver:
+            type: service
+            id: cache.local_redis
+#            class: 'App\Redis\RedisLocalOnlyFactory:createRedisInstance'
+#            instance_class: 'App\Redis\RedisClusterFactory:createRedisCluster'
+#        result_cache_driver:
+#            type: redis
+#            host: localhost
+#            port: 6379
+#        query_cache_driver:
+#            type: redis
+#            host: localhost
+#            port: 6379
+
 framework:
     router:
         resource: '%kernel.project_dir%/app/config/routing_dev.yml'

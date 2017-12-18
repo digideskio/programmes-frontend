@@ -44,6 +44,7 @@ services:
         arguments: ['%cosmos_component_release%', '%cosmos_environment%']
 
     App\Redis\RedisClusterFactory: ~
+    App\Redis\RedisLocalOnlyFactory: ~
 
     App\Controller\ExceptionController:
         public: true
@@ -75,6 +76,15 @@ services:
             - '@logger'
         tags:
             - { name: 'monolog.logger', channel: 'cache' }
+
+    cache.local_redis:
+        factory: 'App\Redis\RedisLocalOnlyFactory:createRedisInstance'
+        class: App\Redis\RedisLocalOnlyFactory
+        arguments:
+            - '@logger'
+        tags:
+            - { name: 'monolog.logger', channel: 'cache' }
+
 
     ### Http Clients
 
