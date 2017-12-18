@@ -4,6 +4,7 @@ namespace App\Builders;
 
 use BBC\ProgrammesPagesService\Domain\Entity\Format;
 use BBC\ProgrammesPagesService\Domain\Entity\Genre;
+use DateTimeImmutable;
 
 abstract class AbstractProgrammeBuilder extends AbstractCoreEntityBuilder
 {
