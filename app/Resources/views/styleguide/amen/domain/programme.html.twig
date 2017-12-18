@@ -4,16 +4,15 @@
 {% block section_name %}Programme - Items{% endblock %}
 
 {% block content %}
-
-        <h2 class="text--shout text--center centi">Programme types variations: </h2>
-        {{ self.displayListOfRenderDescriptors(itemsOfDifferentTypes) }}
-
-        <h2 class="text--shout text--center centi">UI Display variations: </h2>
-        {{ self.displayListOfRenderDescriptors(itemsWithDifferentDisplayOptions) }}
-
-        <h2 class="text--shout text--center centi">Html structure variations: </h2>
-        {{ self.displayListOfRenderDescriptors(itemsWithDifferentHtmlStructure) }}
-
+            <hr>
+            <h2 class="gel-double-pica-bold islet islet--vertical">Programme types variations: </h2>
+            {{ self.displayListOfRenderDescriptors(itemsOfDifferentTypes) }}
+            <hr>
+            <h2 class="gel-double-pica-bold islet islet--vertical">Information variations: </h2>
+            {{ self.displayListOfRenderDescriptors(itemsWithDifferentDisplayOptions) }}
+            <hr>
+            <h2 class="gel-double-pica-bold islet islet--vertical">Layout variations: </h2>
+            {{ self.displayListOfRenderDescriptors(itemsWithDifferentHtmlStructure) }}
 {% endblock %}
 
 
@@ -55,7 +54,7 @@
                 <div>
                     {{ds_amen('programme', presenterArgs['item'], presenterArgs['render_options'])}}
                 </div>
-                <div>
+                <div class="islet islet--horizontal">
                     {% if presenterArgs['render_options'] | length > 0 %}
                         <b>Render options:</b>
                         {{self.renderOptionsToString(presenterArgs['render_options'])}}
