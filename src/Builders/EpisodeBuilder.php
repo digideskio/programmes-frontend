@@ -4,7 +4,7 @@ namespace App\Builders;
 
 use BBC\ProgrammesPagesService\Domain\Entity\Episode;
 
-class EpisodeBuilder extends AbstractProgrammeItemBuilder implements BuilderInterface
+class EpisodeBuilder extends AbstractProgrammeItemBuilder
 {
     /** @var int */
     private $aggregatedBroadcastsCount;

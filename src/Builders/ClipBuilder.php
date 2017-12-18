@@ -4,7 +4,7 @@ namespace App\Builders;
 
 use BBC\ProgrammesPagesService\Domain\Entity\Clip;
 
-class ClipBuilder extends AbstractProgrammeItemBuilder implements BuilderInterface
+class ClipBuilder extends AbstractProgrammeItemBuilder
 {
     protected function __construct()
     {

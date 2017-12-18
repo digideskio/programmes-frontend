@@ -4,7 +4,7 @@ namespace App\Builders;
 
 use BBC\ProgrammesPagesService\Domain\Entity\Series;
 
-class SeriesBuilder extends AbstractProgrammeContainerBuilder implements BuilderInterface
+class SeriesBuilder extends AbstractProgrammeContainerBuilder
 {
     protected function __construct()
     {

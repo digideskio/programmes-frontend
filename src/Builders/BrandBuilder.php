@@ -4,7 +4,7 @@ namespace App\Builders;
 
 use BBC\ProgrammesPagesService\Domain\Entity\Brand;
 
-class BrandBuilder extends AbstractProgrammeContainerBuilder implements BuilderInterface
+class BrandBuilder extends AbstractProgrammeContainerBuilder
 {
     protected function __construct()
     {
