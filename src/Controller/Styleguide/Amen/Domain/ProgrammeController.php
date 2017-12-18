@@ -58,20 +58,22 @@ class ProgrammeController extends BaseController
     private function buildItemsWithDifferentDisplays()
     {
         return [
-            'TYPE VARIATION' => [
+            'TYPE VARIATION 1' => [
                 'item' => ClipBuilder::default()->build(),
                 'render_options' => [
                     'show_image' => false,
                 ],
             ],
-            'TITLE VARIATION 1' => [
+            'TYPE VARIATION 2' => [
+                'item' => ClipBuilder::default()->build(),
+                'render_options' => [
+                    'media_variant' => 'media--card',
+                ],
+            ],
+            'TITLE VARIATION' => [
                 'item' => ClipBuilder::default()->build(),
                 'render_options' => [
                     'title_options' => [
-                        'h_tag' => 'h1',
-                        'text_colour_on_title_link' => false,
-                        'title_size_large' => 'gel-trafalgar',
-                        'title_size_small' => 'gel-pica',
                         'max_title_length' => 6,
                     ]
                 ],
@@ -101,7 +103,15 @@ class ProgrammeController extends BaseController
                         'media_panel_class' => '1/2',
                         // badge to overlay the top of the image
                         'badge_text' => 'some badge text',
-                        'badge_class' => 'br-box-highlight',
+                    ],
+                ],
+            ],
+            'IMAGE VARIATION 2' => [
+                'item' => ClipBuilder::default()->build(),
+                'render_options' => [
+                    'show_image' => false,
+                    'image_options' => [
+                        'badge_text' => 'some badge text'
                     ],
                 ],
             ],
@@ -110,7 +120,39 @@ class ProgrammeController extends BaseController
 
     public function buildItemsWithDifferentHtmlStructure()
     {
-
+        return [
+            'TITLE VARIATION 1' => [
+                'item' => ClipBuilder::default()->build(),
+                'render_options' => [
+                    'title_options' => [
+                        'h_tag' => 'h1',
+                        'text_colour_on_title_link' => false,
+                        'title_size_large' => 'gel-trafalgar',
+                        'title_size_small' => 'gel-pica',
+                    ]
+                ],
+            ],
+            'BODY VARIATION' => [
+                'item' => ClipBuilder::default()->withReleaseDate(new PartialDate(2020, 03, 21))->build(),
+                'render_options' => [
+                    'body_options' => [
+                        'show_synopsis' => true,
+                        'show_release_date' => true,
+                        'synopsis_class' => 'media__meta-item',
+                        'full_details_class' => 'media',
+                    ]
+                ],
+            ],
+            'IMAGE VARIATION' => [
+                'item' => ClipBuilder::default()->build(),
+                'render_options' => [
+                    'image_options' => [
+                        'badge_text' => 'This is a badge text',
+                        'badge_class' => 'text--annotation-white-outline',
+                    ],
+                ],
+            ],
+        ];
     }
 
     // private function buildItemsWithDifferentLayout()
