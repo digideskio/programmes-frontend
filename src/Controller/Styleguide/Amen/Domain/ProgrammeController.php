@@ -58,7 +58,7 @@ class ProgrammeController extends BaseController
     {
         return [
             'TYPE VARIATION' => [
-                'item' => EpisodeBuilder::default()->build(),
+                'item' => ClipBuilder::default()->build(),
                 'render_options' => [
                     'show_image' => false,
                     'force_iplayer_linking' => false,
@@ -66,7 +66,7 @@ class ProgrammeController extends BaseController
             ],
 
             'TITLE VARIATION' => [
-                'item' => EpisodeBuilder::default()->build(),
+                'item' => ClipBuilder::default()->build(),
                 'render_options' => [
                     'title_options' => [
                         'h_tag' => 'h1',
@@ -78,7 +78,7 @@ class ProgrammeController extends BaseController
                 ],
             ],
             'BODY VARIATION' => [
-                'item' => EpisodeBuilder::default()->build(),
+                'item' => ClipBuilder::default()->build(),
                 'render_options' => [
                     'body_options' => [
                         'show_synopsis' => true,
@@ -87,7 +87,7 @@ class ProgrammeController extends BaseController
                 ],
             ],
             'CTA VARIATION (call to action)' => [
-                'item' => EpisodeBuilder::default()->build(),
+                'item' => ClipBuilder::default()->build(),
                 'render_options' => [
                     'cta_options' => [
                         'show_duration' => false,
@@ -95,7 +95,7 @@ class ProgrammeController extends BaseController
                 ],
             ],
             'IMAGE VARIATION' => [
-                'item' => EpisodeBuilder::default()->build(),
+                'item' => ClipBuilder::default()->build(),
                 'render_options' => [
                     'image_options' => [
                         'default_width' => 320,

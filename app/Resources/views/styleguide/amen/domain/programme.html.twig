@@ -17,6 +17,17 @@
 {% endblock %}
 
 
+{% macro displayOptionParam(key, value) %}
+    {% import _self as self %}
+
+    {% if value == false or value == true %}
+        <li>{{ key }} = {{ value ? 'true' : 'false' }}</li>
+    {% else %}
+        <li>{{ key }} = {{ value }}</li>
+    {% endif %}
+
+{% endmacro %}
+
 {% macro renderOptionsToString(renderOptions) %}
     {% import _self as _same %}
     {% if renderOptions | length > 0 %}
@@ -26,7 +37,7 @@
                     <b>{{ key }} </b>
                     {{_same.renderOptionsToString(value)}}
                 {% else %}
-                    <li>{{ key }} = {{ value }}</li>
+                    {{ _same.displayOptionparam(key, value) }}
                 {% endif %}
             {% endfor %}
         </ul>
