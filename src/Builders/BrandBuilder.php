@@ -6,11 +6,6 @@ use BBC\ProgrammesPagesService\Domain\Entity\Brand;
 
 class BrandBuilder extends AbstractProgrammeContainerBuilder
 {
-    protected function __construct()
-    {
-        parent::__construct();
-    }
-
     /**
      * Create a builder with default state.
      * This default state reduce the amount of steps necessary when trying to get a final entity in an specified state

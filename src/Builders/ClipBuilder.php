@@ -21,7 +21,7 @@ class ClipBuilder extends AbstractProgrammeItemBuilder
 
     public function build()
     {
-        return new CLip(
+        return new Clip(
             $this->dbAncestryIds,
             $this->pid,
             $this->title,
