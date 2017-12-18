@@ -97,10 +97,8 @@ class ProgrammeController extends BaseController
                 'item' => ClipBuilder::default()->build(),
                 'render_options' => [
                     'image_options' => [
-                        'default_width' => 320,
                         // classes & elements
                         'media_panel_class' => '1/2',
-
                         // badge to overlay the top of the image
                         'badge_text' => 'some badge text',
                         'badge_class' => 'br-box-highlight',
