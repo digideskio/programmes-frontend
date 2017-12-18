@@ -1,0 +1,57 @@
+{% extends 'styleguide/amen/base.html.twig' %}
+{% import _self as self %}
+
+{% block section_name %}Programme - Items{% endblock %}
+
+{% block content %}
+        <h2>Use cases: </h2>
+        <div class="grid">
+            {{ self.displayListOfRenderDescriptors(itemsOfDifferentTypes) }}
+        </div>
+        <hr>
+        <h2>Display variations: </h2>
+        <div class="grid">
+            {{ self.displayListOfRenderDescriptors(itemsWithDifferentDisplayOptions) }}
+        </div>
+        <hr>
+        {#<h2>Html variations: </h2>#}
+        {#<div class="grid">#}
+            {#{{ self.displayListOfRenderDescriptors(itemsOfDifferentTypes) }}#}
+        {#</div>#}
+{% endblock %}
+
+
+{% macro renderOptionsToString(renderOptions) %}
+    {% import _self as _same %}
+    {% if renderOptions | length > 0 %}
+        <ul>
+            {% for key, value in renderOptions %}
+                {% if value is iterable %}
+                    <b>{{ key }} </b>
+                    {{_same.renderOptionsToString(value)}}
+                {% else %}
+                    <li>{{ key }} = {{ value }}</li>
+                {% endif %}
+            {% endfor %}
+        </ul>
+    {% endif %}
+{% endmacro %}
+
+{% macro displayListOfRenderDescriptors(listOfRenderDescriptorsDto) %}
+    {% import _self as self %}
+
+    {% for description, presenterArgs in listOfRenderDescriptorsDto %}
+        <ul class="grid__item 1/2">
+            <li><b>Description:</b> {{description}}</li>
+
+            {% if presenterArgs['render_options'] | length > 0 %}
+                <b>Render options:</b>
+            {% endif %}
+
+            <li>{{self.renderOptionsToString(presenterArgs['render_options'])}}</li>
+
+            {#Render item#}
+            <li>{{ds_amen('programme', presenterArgs['item'], presenterArgs['render_options'])}}</li>
+        </ul>
+    {% endfor %}
+{% endmacro %}

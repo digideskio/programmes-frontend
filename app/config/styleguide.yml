@@ -6,3 +6,7 @@ styleguide_intro:
 styleguide_promotions:
     path: /programmes/styleguide/amen/domain/promotion
     defaults: { _controller: App\Controller\Styleguide\Amen\Domain\PromotionController}
+
+styleguide_programmes:
+    path: /programmes/styleguide/amen/domain/programme
+    defaults: { _controller: App\Controller\Styleguide\Amen\Domain\ProgrammeController}
