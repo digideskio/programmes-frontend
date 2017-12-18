@@ -7,6 +7,7 @@ use App\Builders\EpisodeBuilder;
 use App\Controller\BaseController;
 use App\Builders\BrandBuilder;
 use App\Builders\SeriesBuilder;
+use BBC\ProgrammesPagesService\Domain\ValueObject\PartialDate;
 
 class ProgrammeController extends BaseController
 {
@@ -61,11 +62,9 @@ class ProgrammeController extends BaseController
                 'item' => ClipBuilder::default()->build(),
                 'render_options' => [
                     'show_image' => false,
-                    'force_iplayer_linking' => false,
                 ],
             ],
-
-            'TITLE VARIATION' => [
+            'TITLE VARIATION 1' => [
                 'item' => ClipBuilder::default()->build(),
                 'render_options' => [
                     'title_options' => [
@@ -78,7 +77,7 @@ class ProgrammeController extends BaseController
                 ],
             ],
             'BODY VARIATION' => [
-                'item' => ClipBuilder::default()->build(),
+                'item' => ClipBuilder::default()->withReleaseDate(new PartialDate(2020, 03, 21))->build(),
                 'render_options' => [
                     'body_options' => [
                         'show_synopsis' => true,

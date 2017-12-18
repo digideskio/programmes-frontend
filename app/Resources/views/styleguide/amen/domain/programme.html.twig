@@ -20,12 +20,11 @@
 {% macro displayOptionParam(key, value) %}
     {% import _self as self %}
 
-    {% if value == false or value == true %}
-        <li>{{ key }} = {{ value ? 'true' : 'false' }}</li>
+    {% if value is same as (true) or value is same as (false) %}
+        <li> {{ key }} = {{ value ? 'true' : 'false' }} </li>
     {% else %}
-        <li>{{ key }} = {{ value }}</li>
+        <li> {{ key }} = {{ value }} </li>
     {% endif %}
-
 {% endmacro %}
 
 {% macro renderOptionsToString(renderOptions) %}
@@ -37,7 +36,7 @@
                     <b>{{ key }} </b>
                     {{_same.renderOptionsToString(value)}}
                 {% else %}
-                    {{ _same.displayOptionparam(key, value) }}
+                    {{_same.displayOptionparam(key, value)}}
                 {% endif %}
             {% endfor %}
         </ul>
