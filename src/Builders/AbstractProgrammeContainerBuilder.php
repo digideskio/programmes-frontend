@@ -33,6 +33,11 @@ abstract class AbstractProgrammeContainerBuilder extends AbstractProgrammeBuilde
         $this->isPodcastable = true;
     }
 
+    public static function default()
+    {
+        return new static();
+    }
+
     public function withAggregatedBroadcastsCount(int $aggregatedBroadcastsCount)
     {
         $this->aggregatedBroadcastsCount = $aggregatedBroadcastsCount;
