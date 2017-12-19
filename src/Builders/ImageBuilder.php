@@ -67,10 +67,10 @@ class ImageBuilder extends AbstractBuilder implements BuilderInterface
         $faker = Faker\Factory::create();
 
         $self = new self();
-        $self->withPid('b00755wz')
-            ->withTitle($faker->text)
-            ->withShortSynopses($faker->text(20))
-            ->withLongestSynopsis($faker->text(150))
+        $self->withPid($faker->regexify('[0-9b-df-hj-np-tv-z]{8,15}'))
+            ->withTitle($faker->sentence(3))
+            ->withShortSynopses($faker->sentence(5))
+            ->withLongestSynopsis($faker->sentence(30))
             ->withType('standard')
             ->withExtension('jpg');
 

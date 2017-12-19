@@ -88,12 +88,12 @@ class PromotionBuilder extends AbstractBuilder implements BuilderInterface
         $faker = Faker\Factory::create();
 
         $self = new self();
-        $self->withPid('b00744wz')
+        $self->withPid($faker->regexify('[0-9b-df-hj-np-tv-z]{8,15}'))
             ->withPromotedEntity(ImageBuilder::default()->build())
-            ->withSynopses(new Synopses($faker->text(15), $faker->text(100), $faker->text(250)))
-            ->withTitle($faker->text(20))
+            ->withSynopses(new Synopses($faker->sentence(5), $faker->sentence(15), $faker->sentence(30)))
+            ->withTitle($faker->sentence(3))
             ->withUrl($faker->url)
-            ->withWeighting($faker->numberBetween(1,5))
+            ->withWeighting($faker->numberBetween(1, 5))
             ->withIsSuperPromotion($faker->boolean)
             ->withRelatedLinks([
                 RelatedLinkBuilder::externalLink()->build(),

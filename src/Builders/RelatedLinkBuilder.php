@@ -65,11 +65,11 @@ class RelatedLinkBuilder extends AbstractBuilder implements BuilderInterface
         $faker = Faker\Factory::create();
 
         $self = new self();
-        $self->withTitle('This is an internal link')
+        $self->withTitle($faker->sentence(3))
              ->withUri('https://www.bbc.co.uk/something')
-             ->withShortSynopsis($faker->text(15))
-             ->withLongestSynopsis($faker->text(40))
-             ->withType($faker->text)
+             ->withShortSynopsis($faker->sentence(5))
+             ->withLongestSynopsis($faker->sentence(30))
+             ->withType($faker->text(5))
              ->withIsExternal(false);
 
         return $self;
@@ -80,10 +80,10 @@ class RelatedLinkBuilder extends AbstractBuilder implements BuilderInterface
         $faker = Faker\Factory::create();
 
         $self = new self();
-        $self->withTitle('This is an external link')
-             ->withUri('https://www.something_not_coming_from_ourcompany.net')
-             ->withShortSynopsis($faker->text(15))
-             ->withLongestSynopsis($faker->text(40))
+        $self->withTitle($faker->sentence(3))
+             ->withUri($faker->url)
+             ->withShortSynopsis($faker->sentence(5))
+             ->withLongestSynopsis($faker->sentence(30))
              ->withType($faker->text)
              ->withIsExternal(true);
 
