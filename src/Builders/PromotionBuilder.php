@@ -90,8 +90,8 @@ class PromotionBuilder extends AbstractBuilder implements BuilderInterface
         $self = new self();
         $self->withPid('b00744wz')
             ->withPromotedEntity(ImageBuilder::default()->build())
-            ->withSynopses(new Synopses('short synopsys', $faker->text(100), $faker->text(250)))
-            ->withTitle('This is the title')
+            ->withSynopses(new Synopses($faker->text(15), $faker->text(100), $faker->text(250)))
+            ->withTitle($faker->text(20))
             ->withUrl($faker->url)
             ->withWeighting($faker->numberBetween(1,5))
             ->withIsSuperPromotion($faker->boolean)
