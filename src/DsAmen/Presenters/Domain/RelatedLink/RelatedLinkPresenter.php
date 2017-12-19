@@ -22,15 +22,6 @@ class RelatedLinkPresenter extends Presenter
         return $this->relatedLink->getUri();
     }
 
-    public function getLinkLocation(): string
-    {
-        if ($this->relatedLink->isExternal()) {
-            return 'programmes_relatedlink_external';
-        }
-
-        return 'programmes_relatedlink_internal';
-    }
-
     public function getTitle(): string
     {
         return $this->relatedLink->getTitle();
