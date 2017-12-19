@@ -66,7 +66,6 @@ class RelatedLinkBuilder extends AbstractBuilder implements BuilderInterface
 
         $self = new self();
         $self->withTitle('This is an internal link')
-            // by default we create an external link
              ->withUri('https://www.bbc.co.uk/something')
              ->withShortSynopsis($faker->text(15))
              ->withLongestSynopsis($faker->text(40))
@@ -82,7 +81,6 @@ class RelatedLinkBuilder extends AbstractBuilder implements BuilderInterface
 
         $self = new self();
         $self->withTitle('This is an external link')
-            // by default we create an external link
              ->withUri('https://www.something_not_coming_from_ourcompany.net')
              ->withShortSynopsis($faker->text(15))
              ->withLongestSynopsis($faker->text(40))
@@ -94,6 +92,7 @@ class RelatedLinkBuilder extends AbstractBuilder implements BuilderInterface
 
     public static function default()
     {
+        // by default we create an external link
         return self::externalLink();
     }
 
