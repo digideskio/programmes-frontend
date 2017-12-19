@@ -7,6 +7,7 @@ use BBC\ProgrammesPagesService\Domain\Entity\Promotion;
 use BBC\ProgrammesPagesService\Domain\Entity\RelatedLink;
 use BBC\ProgrammesPagesService\Domain\ValueObject\Pid;
 use BBC\ProgrammesPagesService\Domain\ValueObject\Synopses;
+use Faker;
 
 class PromotionBuilder implements BuilderInterface
 {
@@ -36,19 +37,7 @@ class PromotionBuilder implements BuilderInterface
 
     private function __construct()
     {
-        $this->pid = new Pid('b00744wz');
-        $this->promotedEntity = ImageBuilder::default()->build();
-        $this->synopses = new Synopses('My short synopsis', 'my medium no too much long synopsis', 'my very long and extremly ever end synopsis');
-        $this->title = 'MY TITLE';
-        $this->url = 'https://www.something_not_coming_from_bbc.net';
-        $this->weighting = 2;
-        $this->isSuperPromotion = false;
-        $this->relatedLinks = [
-            // link external to BBC
-            RelatedLinkBuilder::default()->withUri('http://something_that_is_not_bbc.net')->build(),
-            // link internal to BBC
-            RelatedLinkBuilder::default()->withUri('http://bbc.co.uk/something')->build(),
-        ];
+
     }
 
     public function withPid(string $pid)
@@ -101,7 +90,24 @@ class PromotionBuilder implements BuilderInterface
 
     public static function default()
     {
-        return new self();
+        $faker = Faker\Factory::create();
+
+        $self = new self();
+        $self->withPid('b00744wz')
+        ->withPromotedEntity(ImageBuilder::default()->build())
+        ->withSynopses(new Synopses($faker->text(20), $faker->text(100), $faker->text(250)))
+        ->withTitle($faker->text)
+        ->withUrl($faker->url)
+        ->withWeighting($faker->numberBetween(1,5))
+        ->withIswithIsSuperPromotion($faker->boolean)
+        ->withRelatedLinks([
+            // link external to BBC
+            RelatedLinkBuilder::default()->withUri('http://something_that_is_not_bbc.net')->build(),
+            // link internal to BBC
+            RelatedLinkBuilder::default()->withUri('http://bbc.co.uk/something')->build(),
+        ]);
+
+        return $self;
     }
 
     public function build(): Promotion

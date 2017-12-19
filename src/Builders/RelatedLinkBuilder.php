@@ -2,6 +2,7 @@
 namespace App\Builders;
 
 use BBC\ProgrammesPagesService\Domain\Entity\RelatedLink;
+use Faker;
 
 class RelatedLinkBuilder implements BuilderInterface
 {
@@ -25,12 +26,7 @@ class RelatedLinkBuilder implements BuilderInterface
 
     private function __construct()
     {
-        $this->title = 'my title';
-        $this->uri = 'https://www.something_not_coming_from_ourcompany.net';
-        $this->shortSynopsis = 'my short synopsis';
-        $this->longestSynopsis = 'my longest synopsis is a bit long';
-        $this->type = 'my type';
-        $this->isExternal = true;
+
     }
 
     public function withTitle(string $title)
@@ -72,6 +68,16 @@ class RelatedLinkBuilder implements BuilderInterface
 
     public static function default()
     {
+        $faker = Faker\Factory::create();
+
+        $self = new self();
+        $self->withTitle($faker->text)
+            ->withUri('https://www.something_not_coming_from_ourcompany.net')
+            ->withShortSynopsis($faker->text(20))
+            ->withLongestSynopsis($faker->text(100))
+            ->withType($faker->text)
+            ->withIsExternal(true);
+
         return new self();
     }
 
