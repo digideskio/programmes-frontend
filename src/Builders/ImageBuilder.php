@@ -4,8 +4,9 @@ namespace App\Builders;
 
 use BBC\ProgrammesPagesService\Domain\Entity\Image;
 use BBC\ProgrammesPagesService\Domain\ValueObject\Pid;
+use Faker;
 
-class ImageBuilder implements BuilderInterface
+class ImageBuilder extends AbstractBuilder implements BuilderInterface
 {
     /** @var Pid */
     private $pid;
@@ -24,16 +25,6 @@ class ImageBuilder implements BuilderInterface
 
     /** @var string */
     private $extension;
-
-    private function __construct()
-    {
-        $this->pid = new Pid('b00755wz');
-        $this->title = 'Image title';
-        $this->shortSynopsis = 'This is an image-short synopsis';
-        $this->longestSynopsis = 'This is an image-long synopsis and is a little longer';
-        $this->type = 'standard';
-        $this->extension = 'jpg';
-    }
 
     public function withPid(string $pid)
     {
@@ -55,7 +46,7 @@ class ImageBuilder implements BuilderInterface
 
     public function withLongestSynopsis(string $longestSynopses)
     {
-        $this->shortSynopsis = $longestSynopses;
+        $this->longestSynopsis = $longestSynopses;
         return $this;
     }
 
@@ -73,7 +64,17 @@ class ImageBuilder implements BuilderInterface
 
     public static function default()
     {
-        return new self();
+        $faker = Faker\Factory::create();
+
+        $self = new self();
+        $self->withPid('b00755wz')
+            ->withTitle($faker->text)
+            ->withShortSynopses($faker->text(20))
+            ->withLongestSynopsis($faker->text(150))
+            ->withType('standard')
+            ->withExtension('jpg');
+
+        return $self;
     }
 
     public function build(): Image

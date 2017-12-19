@@ -4,7 +4,7 @@ namespace App\Builders;
 use BBC\ProgrammesPagesService\Domain\Entity\RelatedLink;
 use Faker;
 
-class RelatedLinkBuilder implements BuilderInterface
+class RelatedLinkBuilder extends AbstractBuilder implements BuilderInterface
 {
     /** @var string */
     private $title;
@@ -23,11 +23,6 @@ class RelatedLinkBuilder implements BuilderInterface
 
     /** @var bool */
     private $isExternal;
-
-    private function __construct()
-    {
-
-    }
 
     public function withTitle(string $title)
     {
@@ -65,20 +60,41 @@ class RelatedLinkBuilder implements BuilderInterface
         return $this;
     }
 
-
-    public static function default()
+    public static function internalLink()
     {
         $faker = Faker\Factory::create();
 
         $self = new self();
-        $self->withTitle($faker->text)
-            ->withUri('https://www.something_not_coming_from_ourcompany.net')
-            ->withShortSynopsis($faker->text(20))
-            ->withLongestSynopsis($faker->text(100))
-            ->withType($faker->text)
-            ->withIsExternal(true);
+        $self->withTitle('This is an internal link')
+            // by default we create an external link
+             ->withUri('https://www.bbc.co.uk/something')
+             ->withShortSynopsis($faker->text(15))
+             ->withLongestSynopsis($faker->text(40))
+             ->withType($faker->text)
+             ->withIsExternal(false);
 
-        return new self();
+        return $self;
+    }
+
+    public static function externalLink()
+    {
+        $faker = Faker\Factory::create();
+
+        $self = new self();
+        $self->withTitle('This is an external link')
+            // by default we create an external link
+             ->withUri('https://www.something_not_coming_from_ourcompany.net')
+             ->withShortSynopsis($faker->text(15))
+             ->withLongestSynopsis($faker->text(40))
+             ->withType($faker->text)
+             ->withIsExternal(true);
+
+        return $self;
+    }
+
+    public static function default()
+    {
+        return self::externalLink();
     }
 
     public function build(): RelatedLink

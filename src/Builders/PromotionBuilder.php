@@ -9,7 +9,7 @@ use BBC\ProgrammesPagesService\Domain\ValueObject\Pid;
 use BBC\ProgrammesPagesService\Domain\ValueObject\Synopses;
 use Faker;
 
-class PromotionBuilder implements BuilderInterface
+class PromotionBuilder extends AbstractBuilder implements BuilderInterface
 {
     /** @var Pid */
     private $pid;
@@ -34,11 +34,6 @@ class PromotionBuilder implements BuilderInterface
 
     /** @var RelatedLink[]|null */
     private $relatedLinks;
-
-    private function __construct()
-    {
-
-    }
 
     public function withPid(string $pid)
     {
@@ -94,18 +89,16 @@ class PromotionBuilder implements BuilderInterface
 
         $self = new self();
         $self->withPid('b00744wz')
-        ->withPromotedEntity(ImageBuilder::default()->build())
-        ->withSynopses(new Synopses($faker->text(20), $faker->text(100), $faker->text(250)))
-        ->withTitle($faker->text)
-        ->withUrl($faker->url)
-        ->withWeighting($faker->numberBetween(1,5))
-        ->withIswithIsSuperPromotion($faker->boolean)
-        ->withRelatedLinks([
-            // link external to BBC
-            RelatedLinkBuilder::default()->withUri('http://something_that_is_not_bbc.net')->build(),
-            // link internal to BBC
-            RelatedLinkBuilder::default()->withUri('http://bbc.co.uk/something')->build(),
-        ]);
+            ->withPromotedEntity(ImageBuilder::default()->build())
+            ->withSynopses(new Synopses('short synopsys', $faker->text(100), $faker->text(250)))
+            ->withTitle('This is the title')
+            ->withUrl($faker->url)
+            ->withWeighting($faker->numberBetween(1,5))
+            ->withIsSuperPromotion($faker->boolean)
+            ->withRelatedLinks([
+                RelatedLinkBuilder::externalLink()->build(),
+                RelatedLinkBuilder::internalLink()->build(),
+            ]);
 
         return $self;
     }
